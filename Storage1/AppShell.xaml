@@ -7,9 +7,25 @@
     Shell.FlyoutBehavior="Disabled"
     Title="Storage1">
 
-    <ShellContent
+    <TabBar>
+
+        <ShellContent Title="ShoppingItems"
+                      Icon="grocery_bag.png"
+                      ContentTemplate="{DataTemplate views:ShoppingItemPage}"
+                      Route="ShoppingItemPage"/>
+
+        <ShellContent Title="Cart"
+                       Icon="shopping_cart_add.png"
+                      ContentTemplate="{DataTemplate views:ShoppingCartPage}"
+                      Route="ShoppingCartPage"/>
+        
+        
+        <ShellContent
         Title="Profile"
+        Icon="user.png"
         ContentTemplate="{DataTemplate views:ProfilePage}"
         Route="ProfilePage" />
+
+    </TabBar>
 
 </Shell>
