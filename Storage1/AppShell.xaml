@@ -9,7 +9,7 @@
 
     <TabBar>
 
-        <ShellContent Title="ShoppingItems"
+        <ShellContent Title="Items"
                       Icon="grocery_bag.png"
                       ContentTemplate="{DataTemplate views:ShoppingItemPage}"
                       Route="ShoppingItemPage"/>

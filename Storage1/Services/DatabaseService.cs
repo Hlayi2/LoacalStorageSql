@@ -85,7 +85,7 @@ namespace Storage1.Services
                     },
                     new() {
                         Name = "Aloe",
-                        Description = "Fresh organic violet cauliflower",
+                        Description = "Fresh Aloe",
                         Price = 10.00m,
                         OriginalPrice = 15.00m,
                         StockQuantity = 5,
@@ -93,7 +93,7 @@ namespace Storage1.Services
                     },
                     new() {
                         Name = "Avocado",
-                        Description = "Fresh organic lemons",
+                        Description = "Fresh Avocados",
                         Price = 40.00m,
                         OriginalPrice = 35.00m,
                         StockQuantity = 30,
@@ -101,7 +101,7 @@ namespace Storage1.Services
                     },
                     new() {
                         Name = "Banana",
-                        Description = "Fresh organic violet cauliflower",
+                        Description = "Fresh organic Bananas",
                         Price = 10.00m,
                         OriginalPrice = 15.00m,
                         StockQuantity = 10,
@@ -109,7 +109,7 @@ namespace Storage1.Services
                     },
                     new() {
                         Name = "Purple Cabbage",
-                        Description = "Fresh organic lemons",
+                        Description = "Fresh Cabbage",
                         Price = 20.00m,
                         OriginalPrice = 25.00m,
                         StockQuantity = 3,
@@ -117,7 +117,7 @@ namespace Storage1.Services
                     },
                     new() {
                         Name = "Chillie Papper",
-                        Description = "Fresh organic violet cauliflower",
+                        Description = "Fresh Chillie Papers",
                         Price = 10.00m,
                         OriginalPrice = 15.00m,
                         StockQuantity = 15,

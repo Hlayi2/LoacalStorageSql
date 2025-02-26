@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Storage1.Views.ShoppingItemPage">
+             x:Class="Storage1.Views.ShoppingItemPage"
+           >
     <ScrollView>
         <StackLayout Margin="20">
             <CollectionView x:Name="ShoppingItemsCollection"
@@ -17,36 +18,33 @@
 
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
-                        <Frame Padding="0"
-                               CornerRadius="10"
-                               IsClippedToBounds="True"
-                               BorderColor="LightGray"
-                               HeightRequest="380"
-                               Margin="0">
-                            <Grid RowDefinitions="Auto,Auto,Auto">
+                        <Frame Padding="0" 
+                               CornerRadius="10" 
+                               IsClippedToBounds="True" 
+                               BorderColor="LightGray">
+                            <Grid RowDefinitions="Auto,*,Auto">
                                 <!-- Image Container -->
-                                <Grid>
-                                    <Image Source="{Binding ImageUrl}"
-                                           Aspect="AspectFill"
-                                           HeightRequest="200"/>
+                                <Image Grid.Row="0"
+                                       Source="{Binding ImageUrl}"
+                                       Aspect="AspectFill"
+                                       HeightRequest="200"/>
 
-                                    <!-- Quick View Button -->
-                                    <Button Text="Quick View"
-                                            HorizontalOptions="End"
-                                            VerticalOptions="Start"
-                                            Margin="5"
-                                            BackgroundColor="#333333"
-                                            TextColor="White"
-                                            FontSize="12"
-                                            HeightRequest="34"
-                                            Clicked="QuickViewClicked"
-                                            CommandParameter="{Binding .}"/>
-                                </Grid>
+                                <!-- Quick View Button -->
+                                <Button Text="Quick View"
+                                        HorizontalOptions="End"
+                                        VerticalOptions="Start"
+                                        Margin="5"
+                                        BackgroundColor="#6C3082"
+                                        TextColor="White"
+                                        FontSize="12"
+                                        HeightRequest="34"
+                                        Clicked="QuickViewClicked"
+                                        CommandParameter="{Binding .}"/>
 
                                 <!-- Product Details -->
                                 <VerticalStackLayout Grid.Row="1" 
-                                                   Padding="10"
-                                                   Spacing="5">
+                                                    Padding="10"
+                                                    Spacing="5">
                                     <Label Text="{Binding Name}"
                                            FontSize="16"
                                            FontAttributes="Bold"/>
@@ -60,39 +58,50 @@
                                            FontAttributes="Bold"
                                            Margin="0,5,0,0"/>
 
-                                    <!-- Quantity Controls -->
-                                    <Grid ColumnDefinitions="*,Auto,Auto,Auto" 
-                                          ColumnSpacing="10">
+                                    <!-- Stock and Quantity Controls -->
+                                    <Grid ColumnDefinitions="*,Auto,Auto,Auto">
                                         <Label Text="{Binding StockQuantity, StringFormat='Stock: {0}'}"
+                                               Grid.Column="0"
                                                VerticalOptions="Center"/>
 
                                         <Button Text="-"
-                                                Grid.Column="2"
+                                                Grid.Column="1"
                                                 WidthRequest="40"
-                                                HeightRequest="30"
+                                                HeightRequest="40"
+                                                BackgroundColor="#4B164C"
+                                                TextColor="White"
+                                                CornerRadius="20"
                                                 Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.DecrementCommand}"
                                                 CommandParameter="{Binding .}"/>
 
                                         <Label Text="{Binding Quantity}"
                                                Grid.Column="2"
                                                HorizontalOptions="Center"
-                                               VerticalOptions="Center"/>
+                                               VerticalOptions="Center"
+                                               Margin="10,0"/>
 
                                         <Button Text="+"
-                                                Grid.Column="1"
+                                                Grid.Column="3"
                                                 WidthRequest="40"
-                                                HeightRequest="30"
+                                                HeightRequest="40"
+                                                BackgroundColor="#4B164C"
+                                                TextColor="White"
+                                                CornerRadius="20"
                                                 Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.IncrementCommand}"
                                                 CommandParameter="{Binding .}"/>
                                     </Grid>
                                 </VerticalStackLayout>
 
                                 <!-- Add to Cart Button -->
-                                <Button Text="Add to Cart"
-                                        Grid.Row="2"
-                                        Margin="0,0,0,1"
+                                <Button Grid.Row="2"
+                                        Text="Add to Cart" 
                                         BackgroundColor="#4B164C"
                                         TextColor="White"
+                                        CornerRadius="20"
+                                        Margin="10,5,10,10"
+                                        HorizontalOptions="Center"
+                                        WidthRequest="150"
+                                        HeightRequest="40"
                                         Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.AddToCartCommand}"
                                         CommandParameter="{Binding .}"/>
                             </Grid>
@@ -104,9 +113,14 @@
             <!-- View Cart Button -->
             <Button Text="View Cart"
                     Clicked="ViewCartClicked"
-                    BackgroundColor="#666666"
+                    BackgroundColor="#4B164C"
                     TextColor="White"
-                    Margin="0,20"/>
+                    CornerRadius="20"
+                    Margin="0,30,10,10"
+                    HorizontalOptions="Center"
+                    WidthRequest="150"
+                    HeightRequest="40"
+                   />
         </StackLayout>
     </ScrollView>
 </ContentPage>
