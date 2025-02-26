@@ -1,4 +1,5 @@
-﻿using SQLite;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using SQLite;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Storage1.Models
 {
-    public class ShoppingItem
+    public partial class ShoppingItem : ObservableObject
     {
         [PrimaryKey, AutoIncrement]
         public int Id { get; set; }
@@ -17,7 +18,9 @@ namespace Storage1.Models
         public decimal OriginalPrice { get; set; }  // Add this for discount calculation
         public int StockQuantity { get; set; }
         public string ImageUrl { get; set; }  // Add this for product images
-        public int Quantity { get; set; } = 1;
+
+        [ObservableProperty]
+        private int _quantity = 1;
         public int DiscountPercentage => OriginalPrice > 0 ?
             (int)((1 - Price / OriginalPrice) * 100) : 0;
     }

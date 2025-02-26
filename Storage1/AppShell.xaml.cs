@@ -9,6 +9,7 @@ namespace Storage1
             InitializeComponent();
             Routing.RegisterRoute(nameof(ShoppingCartPage), typeof(ShoppingCartPage));
             Routing.RegisterRoute(nameof(ProfilePage), typeof(ProfilePage));
+            Routing.RegisterRoute(nameof(ShoppingItemPage), typeof(ShoppingItemPage));
 
         }
     }

@@ -2,9 +2,19 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:Storage1.Views"
+             xmlns:converters="clr-namespace:Storage1.Converters"
              x:Class="Storage1.Views.ShoppingCartPage">
+    
     <ScrollView>
         <StackLayout Margin="20">
+            <!-- Empty Cart Message -->
+            <Label Text="Your cart is empty. Start shopping now!"
+                   FontSize="Medium"
+                   HorizontalOptions="Center"
+                   VerticalOptions="Center"
+                   IsVisible="{Binding CartItems.Count, Converter={StaticResource IntToBoolConverter}, ConverterParameter=0}"/>
+
+            <!-- Cart Items -->
             <CollectionView ItemsSource="{Binding CartItems}">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
@@ -59,6 +69,7 @@
                    HorizontalOptions="End"
                    Margin="0,20"/>
 
+            <!-- Buttons -->
             <Button Text="Continue Shopping"
                     Clicked="ContinueShoppingClicked"
                     BackgroundColor="#4B164C"
@@ -67,6 +78,11 @@
             <Button Text="Checkout"
                     Clicked="CheckoutClicked"
                     BackgroundColor="#666666"
+                    TextColor="White"
+                    Margin="0,10,0,20"/>
+            <Button Text="Clear Cart"
+                    Clicked="ClearCartClicked"
+                    BackgroundColor="#FF0000"
                     TextColor="White"
                     Margin="0,10,0,20"/>
         </StackLayout>

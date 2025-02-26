@@ -4,7 +4,8 @@
              x:Class="Storage1.Views.ShoppingItemPage">
     <ScrollView>
         <StackLayout Margin="20">
-            <CollectionView ItemsSource="{Binding ShoppingItems}"
+            <CollectionView x:Name="ShoppingItemsCollection"
+                          ItemsSource="{Binding ShoppingItems}"
                           SelectionMode="Single"
                           SelectedItem="{Binding SelectedItem, Mode=TwoWay}">
                 <CollectionView.ItemsLayout>
@@ -20,29 +21,14 @@
                                CornerRadius="10"
                                IsClippedToBounds="True"
                                BorderColor="LightGray"
-                               HeightRequest="370"
-                              
+                               HeightRequest="380"
                                Margin="0">
-                            <Grid RowDefinitions="Auto,Auto">
+                            <Grid RowDefinitions="Auto,Auto,Auto">
                                 <!-- Image Container -->
                                 <Grid>
                                     <Image Source="{Binding ImageUrl}"
                                            Aspect="AspectFill"
                                            HeightRequest="200"/>
-
-                                    <!-- Discount Badge -->
-                                    <Frame BackgroundColor="#90C73E"
-                                           Padding="5"
-                                           CornerRadius="5"
-                                           HorizontalOptions="Start"
-                                           VerticalOptions="Start"
-                                           Margin="5"
-                                           HeightRequest="25"
-                                           WidthRequest="25">
-                                        <Label Text="{Binding DiscountPercentage, StringFormat='-{0}%'}"
-                                               TextColor="White"
-                                               FontSize="12"/>
-                                    </Frame>
 
                                     <!-- Quick View Button -->
                                     <Button Text="Quick View"
@@ -52,7 +38,9 @@
                                             BackgroundColor="#333333"
                                             TextColor="White"
                                             FontSize="12"
-                                            HeightRequest="34"/>
+                                            HeightRequest="34"
+                                            Clicked="QuickViewClicked"
+                                            CommandParameter="{Binding .}"/>
                                 </Grid>
 
                                 <!-- Product Details -->
@@ -68,14 +56,9 @@
                                            TextColor="Gray"/>
 
                                     <!-- Price Display -->
-                                    <StackLayout Orientation="Horizontal">
-                                        <Label Text="{Binding OriginalPrice, StringFormat='R{0:N2}'}"
-                                               TextDecorations="Strikethrough"
-                                               TextColor="Gray"/>
-                                        <Label Text="{Binding Price, StringFormat='R{0:N2}'}"
-                                               FontAttributes="Bold"
-                                               Margin="5,0,0,0"/>
-                                    </StackLayout>
+                                    <Label Text="{Binding Price, StringFormat='R{0:N2}'}"
+                                           FontAttributes="Bold"
+                                           Margin="0,5,0,0"/>
 
                                     <!-- Quantity Controls -->
                                     <Grid ColumnDefinitions="*,Auto,Auto,Auto" 
@@ -84,8 +67,9 @@
                                                VerticalOptions="Center"/>
 
                                         <Button Text="-"
-                                                Grid.Column="1"
+                                                Grid.Column="2"
                                                 WidthRequest="40"
+                                                HeightRequest="30"
                                                 Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.DecrementCommand}"
                                                 CommandParameter="{Binding .}"/>
 
@@ -95,29 +79,34 @@
                                                VerticalOptions="Center"/>
 
                                         <Button Text="+"
-                                                Grid.Column="3"
+                                                Grid.Column="1"
                                                 WidthRequest="40"
+                                                HeightRequest="30"
                                                 Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.IncrementCommand}"
                                                 CommandParameter="{Binding .}"/>
                                     </Grid>
                                 </VerticalStackLayout>
+
+                                <!-- Add to Cart Button -->
+                                <Button Text="Add to Cart"
+                                        Grid.Row="2"
+                                        Margin="0,0,0,1"
+                                        BackgroundColor="#4B164C"
+                                        TextColor="White"
+                                        Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.AddToCartCommand}"
+                                        CommandParameter="{Binding .}"/>
                             </Grid>
                         </Frame>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
 
-            <Button Text="Add to Cart" 
-                    Command="{Binding AddToCartCommand}"
-                    Margin="0,20"
-                    BackgroundColor="#4B164C"
-                    TextColor="White"/>
-
+            <!-- View Cart Button -->
             <Button Text="View Cart"
                     Clicked="ViewCartClicked"
                     BackgroundColor="#666666"
                     TextColor="White"
-                    Margin="0,0,0,20"/>
+                    Margin="0,20"/>
         </StackLayout>
     </ScrollView>
 </ContentPage>
